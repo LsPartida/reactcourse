@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
+import PersonsList from "../components/Persons/PersonsList";
 import Radium from "radium";
-import ErrorBoundary from "./ErrorBaundary/ErrorBoundary";
 class AppClass extends Component {
   state = {
     persons: [
@@ -42,35 +41,19 @@ class AppClass extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <ErrorBoundary key={person.id}>
-                <Person
-                  click={() => this.deletePersonHandler(index)}
-                  changed={(event) => this.nameChangeHandler(event, person.id)}
-                  name={person.name}
-                  age={person.age}
-                />
-              </ErrorBoundary>
-            );
-          })}
+          <PersonsList
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}
+          />
         </div>
       );
     }
-    const classes = ["red", "bold"];
-    if (this.state.persons.length <= 2) {
-      classes.push("red");
-      console.log(classes);
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push("bold");
-    }
+    
 
     return (
       <div className={classes.join(" ")}>
-        <h1>Hi</h1>
-        <p>This works</p>
-        <button onClick={this.togglePersonsHandler}>Switch Name</button>
+        
         {persons}
       </div>
     );

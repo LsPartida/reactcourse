@@ -3,8 +3,6 @@ import "./Person.css";
 import Radium from "radium";
 
 const person = (props) => {
-  const Rnd = Math.random();
-  if (Rnd > 0.7) throw new console.error("Something failed");
   return (
     <div className="Person">
       <p onClick={props.click}>
